@@ -34,6 +34,12 @@ module.exports = [
         "hapi-swagger": {
           payloadType: "form"
         }
+      },
+      validate: {
+        payload: Joi.object({
+          quantity: Joi.number().integer().required().min(1),
+          code: Joi.string().valid("VOUCHER", "TSHIRT","MUG").required()
+        })
       }
     }
   },

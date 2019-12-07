@@ -24,12 +24,24 @@ const init = async () => {
     },
   };
 
+  const yarOptions = {
+    storeBlank: false,
+    cookieOptions: {
+      password: process.env.SESSION_TOKEN,
+      isSecure: false
+    }
+  };
+
   await server.register([
     Inert,
     Vision,
     {
       plugin: HapiSwagger,
       options: swaggerOptions
+    },
+    {
+      plugin: require('@hapi/yar'),
+      options: yarOptions
     }
   ]);
 
